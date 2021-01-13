@@ -1,4 +1,5 @@
 ﻿using Api.Base;
+using BakerShopApp.Forms;
 using BakerShopApp.Interface;
 using BakerShopApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +22,21 @@ namespace BakerShopApp.Services
             
         public async Task<ActionResult<object>> GetAll()
         {
-            var data = await _context.Groups.ToListAsync();
+            var data = await _context.Group.ToListAsync();
             return new ApiResponse(data);
+        }
+
+        public async Task<ActionResult<object>> Create(GroupForm form)
+        {
+            var model = new Group()
+            {
+                Name = form.Name
+            };
+
+            _context.Group.Add(model);
+
+            await _context.SaveChangesAsync();
+            return new ApiResponse(model);
         }
     }
 }

@@ -59,5 +59,11 @@ E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\bin\Debug\netcoreapp3
 E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.Design.dll
 E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.Design.dll
 E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\obj\Debug\netcoreapp3.1\BakerShopApp.csproj.CoreCompileInputs.cache
+E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\obj\Debug\netcoreapp3.1\BakerShopApp.MvcApplicationPartsAssemblyInfo.cs
 E:\MyProject\baker-shop\back-end\BakerShopApp\BakerShopApp\obj\Debug\netcoreapp3.1\BakerShopApp.MvcApplicationPartsAssemblyInfo.cache

@@ -13,34 +13,52 @@ namespace TodoApp.Models
         {
         }
 
-        public DbSet<Groups> Groups { get; set; }
-        public DbSet<Product> Product { get; set; }
-        public DbSet<UserRoles> UserRoles { get; set; }
-        public DbSet<Users> Users { get; set; }
+        public  DbSet<Group> Group { get; set; }
+        public  DbSet<Product> Product { get; set; }
+        public  DbSet<User> User { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Group>(entity =>
+            {
+                entity.HasIndex(e => e.Id)
+                    .HasName("Group_Id_uindex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Name).IsRequired();
+            });
+
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.HasIndex(e => e.GroupId);
+                entity.HasIndex(e => e.Id)
+                    .HasName("Product_Id_uindex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Name).IsRequired();
 
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.Product)
-                    .HasForeignKey(d => d.GroupId);
+                    .HasForeignKey(d => d.GroupId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("Product_Group_Id_fk");
             });
 
-            modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.UserRoleId);
+                entity.HasIndex(e => e.Id)
+                    .HasName("User_Id_uindex")
+                    .IsUnique();
 
-                entity.Property(e => e.Decription).HasColumnName("decription");
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.Phone).HasColumnName("phone");
+                entity.Property(e => e.Password).IsRequired();
 
-                entity.HasOne(d => d.UserRole)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.UserRoleId);
+                entity.Property(e => e.UserName).IsRequired();
             });
 
 

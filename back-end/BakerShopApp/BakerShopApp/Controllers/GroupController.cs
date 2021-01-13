@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BakerShopApp.Forms;
 using BakerShopApp.Interface;
 using BakerShopApp.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -27,5 +28,14 @@ namespace BakerShopApp.Controllers
         {
             return await _groupService.GetAll();
         }
+
+        [Route("create")]
+        [HttpPost]
+        public async Task<ActionResult<object>> Create([FromBody] GroupForm form)
+        {
+            return await _groupService.Create(form);
+        }
+
+
     }
 }
