@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
-using TodoApp.Models;
 
 namespace BakerShopApp.Models
 {

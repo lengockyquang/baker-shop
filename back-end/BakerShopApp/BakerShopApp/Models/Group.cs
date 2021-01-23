@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TodoApp.Models
+namespace Models
 {
     public partial class Group
     {

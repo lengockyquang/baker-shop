@@ -1,10 +1,14 @@
 ﻿using System;
 using BakerShopApp.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using BakerShopApp.Configurations;
 
-namespace TodoApp.Models
+namespace Models
 {
+    //public class ApiContext : IdentityDbContext<User, Role, Guid>
     public class ApiContext : DbContext
     {
 
@@ -17,49 +21,18 @@ namespace TodoApp.Models
         public  DbSet<Product> Product { get; set; }
         public  DbSet<User> User { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Group>(entity =>
-            {
-                entity.HasIndex(e => e.Id)
-                    .HasName("Group_Id_uindex")
-                    .IsUnique();
 
-                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
 
-                entity.Property(e => e.Name).IsRequired();
-            });
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
 
-            modelBuilder.Entity<Product>(entity =>
-            {
-                entity.HasIndex(e => e.Id)
-                    .HasName("Product_Id_uindex")
-                    .IsUnique();
-
-                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.Name).IsRequired();
-
-                entity.HasOne(d => d.Group)
-                    .WithMany(p => p.Product)
-                    .HasForeignKey(d => d.GroupId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("Product_Group_Id_fk");
-            });
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasIndex(e => e.Id)
-                    .HasName("User_Id_uindex")
-                    .IsUnique();
-
-                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.Password).IsRequired();
-
-                entity.Property(e => e.UserName).IsRequired();
-            });
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
 
 
         }

@@ -7,6 +7,7 @@ Layout.propTypes = {
 };
 
 function Layout(props: any) {
+
     return (
         <div className="layout-page">
             {/* <HeaderPage /> */}

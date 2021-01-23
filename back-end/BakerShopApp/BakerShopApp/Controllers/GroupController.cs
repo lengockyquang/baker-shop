@@ -4,15 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using BakerShopApp.Forms;
 using BakerShopApp.Interface;
-using BakerShopApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TodoApp.Models;
-using static BakerShopApp.Interface.SomeInterfaces;
 
 namespace BakerShopApp.Controllers
 {
-    [ApiController]
     [Route("api/group")]
+    [ApiController]
+    [Authorize]
     public class GroupController : Controller
     {
         private IGroupService _groupService;
