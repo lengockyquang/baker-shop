@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 export default class AppUtil {
     static _ = lodash;
-    static axios = axios;
+    static Axios = axios;
 
 }
 

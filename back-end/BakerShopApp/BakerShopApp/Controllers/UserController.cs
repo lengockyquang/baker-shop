@@ -43,7 +43,7 @@ namespace BakerShopApp.Controllers
 
         [HttpPost("authenticate")]
         [AllowAnonymous]
-        public async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
+        public async Task<ActionResult<object>> Authenticate([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -51,10 +51,39 @@ namespace BakerShopApp.Controllers
             var resultToken = await _userService.Authencate(request);
             if (string.IsNullOrEmpty(resultToken))
             {
-                return BadRequest("Username or password is incorrect.");
+                return new ApiResponse("Username or password is incorrect.");
             }
-            return Ok(new { token = resultToken });
+
+            return new ApiResponse(success: true, results: new
+            {
+                Token = resultToken
+            });
         }
+
+        //[HttpGet("/api/check-login")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> CheckLogin([FromServices] ApiContext apiContext, [FromServices] IHttpUserAccessor accessor)
+        //{
+        //    await Task.CompletedTask;
+        //    var identity = (ClaimsIdentity)HttpContext.User.Identity;
+        //    var isLogined = identity.Claims.Count() > 0;
+        //    var data = identity.Claims.Select(x => new { Name = x.Value, Type = x.Type });
+        //    if (isLogined)
+        //    {
+        //        var user = accessor.GetUser();
+        //        LogUserAccess(accessor.GetUserName().ToLower());
+        //        return Ok(new
+        //        {
+        //            success = isLogined,
+        //            data = GetUserData(accessor.GetUserName().ToLower(), apiContext, accessor, service),
+        //        });
+        //    }
+        //    return Ok(new
+        //    {
+        //        success = isLogined
+        //    });
+        //}
+
 
         [HttpPost("register")]
         [AllowAnonymous]
@@ -72,5 +101,7 @@ namespace BakerShopApp.Controllers
             return Ok();
 
         }
+
+
     }
 }

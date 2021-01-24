@@ -11,3 +11,11 @@ export const setActiveHobby = (activeId) => {
         payload: activeId,
     };
 };
+
+
+export const setToken = (token) => {
+    return {
+        type: 'SET_TOKEN',
+        payload: token
+    };
+};

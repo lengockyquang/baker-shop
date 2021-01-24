@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppRoute from './AppRoute';
+import Login from './login/Login';
+import GroupList from './group/GroupList';
 
 Layout.propTypes = {
 
@@ -8,30 +10,40 @@ Layout.propTypes = {
 
 function Layout(props: any) {
 
-    return (
-        <div className="layout-page">
-            {/* <HeaderPage /> */}
-            <div
-                style={{
-                    overflow: 'auto',
-                    // height: this.state.height,
-                    position: 'relative',
-                    top: 0
-                }}
-            >
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        // minHeight: this.state.height - FOOTER_HEIGHT
-                    }}
-                >
-                    <AppRoute />
-                </div>
-                {/* <Footer /> */}
-            </div>
-        </div>
-    );
+
+    const isAuthenticated = false;
+    if (!isAuthenticated) {
+        return <Login />;
+    }
+
+    return <GroupList />;
+
+
+
+    // return (
+    //     <div className="layout-page">
+    //         {/* <HeaderPage /> */}
+    //         <div
+    //             style={{
+    //                 overflow: 'auto',
+    //                 // height: this.state.height,
+    //                 position: 'relative',
+    //                 top: 0
+    //             }}
+    //         >
+    //             <div
+    //                 style={{
+    //                     display: 'flex',
+    //                     flexDirection: 'column',
+    //                     // minHeight: this.state.height - FOOTER_HEIGHT
+    //                 }}
+    //             >
+    //                 <AppRoute />
+    //             </div>
+    //             {/* <Footer /> */}
+    //         </div>
+    //     </div>
+    // );
 }
 
 export default Layout;

@@ -28,6 +28,14 @@ namespace BakerShopApp.Controllers
             return await _groupService.GetAll();
         }
 
+        [Route("list")]
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<ActionResult<object>> Index2()
+        {
+            return await _groupService.GetAll();
+        }
+
         [Route("create")]
         [HttpPost]
         public async Task<ActionResult<object>> Create([FromBody] GroupForm form)
