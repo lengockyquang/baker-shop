@@ -121,11 +121,12 @@ const Login = (): JSX.Element => {
     };
 
     const setToken = (userToken: string) => {
-        sessionStorage.setItem('token', JSON.stringify(userToken));
+        localStorage.setItem('token', userToken);
+        sessionStorage.setItem('token', userToken);
     };
 
     const getToken = () => {
-        //
+        localStorage.getItem('token');
     };
 
 
