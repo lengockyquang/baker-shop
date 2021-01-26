@@ -53,7 +53,6 @@ namespace BakerShopApp.Controllers
             {
                 return new ApiResponse("Username or password is incorrect.");
             }
-            var test = GetName2();
 
             return new ApiResponse(success: true, results: new
             {
@@ -103,20 +102,26 @@ namespace BakerShopApp.Controllers
 
         }
 
-        private Object GetName2()
+
+        [HttpGet("check-login")]
+        public ActionResult<object> CheckLogin()
         {
             var identity = User.Identity as ClaimsIdentity;
-            if (identity != null)
+
+            if (identity != null && identity.Claims.Count() != 0)
             {
                 IEnumerable<Claim> claims = identity.Claims;
-                var name = claims.Where(p => p.Type == "name").FirstOrDefault()?.Value;
-                return new
-                {
-                    data = name
-                };
+                var userName = claims.Where(p => p.Type == ClaimTypes.NameIdentifier).FirstOrDefault()?.Value;
+                var test = claims.ToList();
 
+
+                return new ApiResponse(success: true, results: new
+                {
+                    data = userName
+                });
             }
-            return null;
+
+            return new ApiResponse("Bạn chưa đăng nhập!!");
         }
     }
 }
